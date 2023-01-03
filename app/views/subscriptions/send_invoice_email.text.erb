@@ -1,0 +1,15 @@
+Hola <%= @subscription.customer.name %>
+
+A continuación se adjunta la información de tu compra:
+
+Fecha: <%= @subscription.created_at.strftime('%d/%m/%Y') %>
+Factura # <%= @subscription.id %>
+
+Gracias por comprar tu plan <%= @subscription.plan.name %> con un costo de $<%= @subscription.plan.price %> con nosotros.
+En GYM Fuerza Y Salud contamos con 39 años de experiencia y estamos felices de poder ayudarte en este proceso de tener en una vida más saludable.
+
+Detalles de tu plan:
+Fecha de inicio: <%= @subscription.start %>
+Fecha de fin: <%= @subscription.end %>
+
+Una vez más gracias por elegirnos y nos vemos en el entrenamiento.

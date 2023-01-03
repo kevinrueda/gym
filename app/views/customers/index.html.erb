@@ -1,0 +1,22 @@
+<%= render 'shared/flash' %>
+
+<%= link_to new_customer_path, class: "btn btn-primary mb-2" do %>
+  <%= icon("fas", "plus", "Nuevo Cliente") %>
+<% end %>
+<div class="table-responsive">
+  <table id="customers-datatable" data-turbo="false" class="table table-striped table-bordered nowrap" data-controller="loadCustomers destroyCustomer" data-source="<%= customers_path(format: :json) %>" style="width: 100%">
+    <thead>
+    <tr class="table-active">
+      <th data-priority="0"></th>
+      <th data-priority="1">#</th>
+      <th data-priority="4">¿Suscrito?</th>
+      <th data-priority="2">Nombre</th>
+      <th data-priority="5">Documento</th>
+      <th data-priority="6">Fecha de Inscripción</th>
+      <th data-priority="3">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>

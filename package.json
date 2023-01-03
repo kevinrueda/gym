@@ -1,0 +1,20 @@
+{
+  "name":"sistema_gym",
+  "private": "true",
+  "scripts": {
+    "build": "esbuild app/javascript/application.js --bundle --outdir=app/assets/builds"
+  },
+  "dependencies": {
+    "@fullcalendar/core": "^6.0.1",
+    "@fullcalendar/daygrid": "^6.0.1",
+    "@hotwired/stimulus": "^3.1.0",
+    "@hotwired/turbo-rails": "^7.2.0",
+    "admin-lte": "^3.2.0",
+    "adminlte": "^2.4.1",
+    "datatables.net-responsive-bs4": "^2.3.0",
+    "esbuild": "^0.15.7",
+    "fullcalendar": "^6.0.1",
+    "jquery": "^3.6.1",
+    "jquery-confirm": "^3.3.4"
+  }
+}

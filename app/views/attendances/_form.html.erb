@@ -1,0 +1,8 @@
+<%= form_with(model: [@customer, @attendance], local: true) do |form| %>
+  <div class="card-body">
+    ¿Está seguro de crear una nueva asistencia?
+  </div>
+  <div class="card-footer">
+    <%= form.submit "Guardar", class: "btn btn-primary" %>
+  </div>
+<% end %>

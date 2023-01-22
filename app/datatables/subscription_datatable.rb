@@ -31,8 +31,10 @@ class SubscriptionDatatable < AjaxDatatablesRails::ActiveRecord
         start_sub: record.start.strftime('%d/%m/%Y'),
         end_sub: record.end.strftime('%d/%m/%Y'),
         actions: content_tag(:div) do
+          if record.customer.subscriptions.last == record
             link_to(icon("fas", "trash"), record, class: "btn btn-danger btn-sm destroy", data: { action: "destroySubscription#destroy", "destroySubscription-target": "row" })
-        end,
+            end
+          end,
         DT_RowId: record.id
       }
     end

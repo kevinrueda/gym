@@ -28,7 +28,7 @@ export default class extends Controller {
                     }
                 },
                 {"data": "name"},
-                {"data": "dni"},
+                {"data": "phone"},
                 {"data": "created_at"},
                 {"data": "actions", "orderable": false, "width": "10%"}
             ],

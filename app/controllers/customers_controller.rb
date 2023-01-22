@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
   layout "admin"
   before_action :authenticate_user!
-  before_action :set_customer, only: [:show, :edit, :update, :destroy]
+  before_action :set_customer, only: [:show, :edit, :update, :destroy, :send_subscription_email]
   def index
     @title = "Clientes"
     respond_to do |format|
@@ -42,6 +42,19 @@ class CustomersController < ApplicationController
     @customer.destroy
   end
 
+  def send_birthday_email
+    customers = Customer.where(id: params[:customer_ids].split("-"))
+    customers.each do |customer|
+      HappyBirthdayMailer.birthday(customer).deliver_later
+    end
+    redirect_to customers_path, notice: 'Felicitaciones enviadas'
+  end
+
+  def send_subscription_email
+    ReminderMailer.with(customer: @customer).subscription.deliver_later
+    redirect_to customers_path, notice: 'Recordatorio enviado'
+  end
+
   private
 
   def set_customer
@@ -49,6 +62,6 @@ class CustomersController < ApplicationController
   end
 
   def customer_params
-    params.require(:customer).permit(:name, :dni, :address, :phone, :birth_date, :email, :occupation, :weight, :objectives, :is_operated, :spine_problems, :others)
+    params.require(:customer).permit(:name, :dni, :address, :phone, :birth_date, :email, :occupation, :weight, :objectives, :is_operated, :spine_problems, :others, :created_at)
   end
 end

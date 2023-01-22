@@ -19,9 +19,13 @@ class Subscription < ApplicationRecord
 
   def self.month_total
     time_range = Date.today.beginning_of_month..Date.today.end_of_month
-    data = Subscription.joins(:plan).where('subscriptions.created_at' => time_range).group('date(subscriptions.created_at)').select('date(subscriptions.created_at) AS dia, sum(plans.price) AS total')
+    data = Subscription.joins(:plan).where('subscriptions.created_at' => time_range).group('date(subscriptions.created_at)').select('sum(plans.price) AS total')
     if data.exists?
-      data.first.total
+      total = 0
+      data.each do |dia|
+        total += dia.total
+      end
+      total
     else
       0
     end

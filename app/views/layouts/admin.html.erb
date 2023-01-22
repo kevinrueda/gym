@@ -27,12 +27,59 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge text-bold"><%= Customer.expired_subscription.count %></span>
+          <i class="fas fa-birthday-cake"></i>
+          <span class="badge badge-success navbar-badge text-bold"><%= Customer.birthday.count %></span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
-          <span class="dropdown-item dropdown-header text-danger text-bold">Suscripciones que vencen hoy: (<%= Customer.expired_subscription.count %>
-            )</span>
+          <span class="dropdown-item dropdown-header text-primary text-bold">Cumpleañeros de hoy: (<%= Customer.birthday.count %>)</span>
+          <% Customer.birthday.each do |customer| %>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <i class="far fa-smile-beam mr-2"></i> <%= customer.name %>
+              <span class="float-right text-muted text-sm"><%= customer.age %></span>
+            </a>
+          <% end %>
+          <div class="dropdown-divider"></div>
+          <% if Customer.birthday.count > 0 %>
+            <%= link_to send_birthday_email_path(Customer.birthday.pluck(:id).join("-")), class: "dropdown-item dropdown-footer bg-success" do %>
+              <%= icon("fas", "birthday-cake", "Enviar felicitación al correo") %>
+            <% end %>
+          <% end %>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
+          <i class="fas fa-hourglass-half"></i>
+          <span class="badge badge-warning navbar-badge text-bold"><%= Customer.subscription_reminder.count %></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
+          <span class="dropdown-item dropdown-header text-orange text-bold">Suscripciones próximas a vencer: (<%= Customer.subscription_reminder.count %>)</span>
+          <% Customer.subscription_reminder.each do |customer| %>
+            <div href="#" class="dropdown-item">
+              <div class="media">
+                <i class="fas fa-user-circle"></i>
+                <div class="media-body ml-2">
+                  <h3 class="dropdown-item-title">
+                    <%= customer.name %>
+                    <%= link_to send_subscription_email_path(customer.id), class: "d-inline float-right text-sm text-orange" do %>
+                      <%= icon("fas", "envelope") %>
+                    <% end %>
+                  </h3>
+                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> <%= customer.subscriptions.last.end.strftime('%d/%m/%Y') %></p>
+                </div>
+              </div>
+            </div>
+            <div class="dropdown-divider"></div>
+          <% end %>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
+          <i class="far fa-bell"></i>
+          <span class="badge badge-danger navbar-badge text-bold"><%= Customer.expired_subscription.count %></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
+          <span class="dropdown-item dropdown-header text-danger text-bold">Suscripciones que vencen hoy: (<%= Customer.expired_subscription.count %>)</span>
           <% Customer.expired_subscription.each do |customer| %>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
@@ -42,6 +89,7 @@
           <% end %>
         </div>
       </li>
+
     </ul>
   </nav>  <!-- /.navbar -->
 

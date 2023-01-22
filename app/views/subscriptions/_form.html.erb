@@ -8,6 +8,10 @@
       <%= form.label :plan_id, "Plan" %>
       <%= form.collection_select(:plan_id, Plan.all, :id, :name, { include_blank: 'Seleccione un plan' }, { class: "form-control select2", required: true }) %>
     </div>
+    <div class="form-group">
+      <%= form.label :end, "Fin de suscripción" %>
+      <%= form.date_field :end, class: "form-control", :required => true %>
+    </div>
   </div>
 
   <div class="card-footer">

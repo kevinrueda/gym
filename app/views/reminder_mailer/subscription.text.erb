@@ -1,0 +1,3 @@
+Hola <%= @customer.name %> tu suscripción #<%= @customer.subscriptions.count %>
+esta próxima a vencer <%= @customer.subscriptions.last.end.strftime('%d/%m/%Y') %>,
+te invitamos a que te acerques a nuestro GYM y renueves tu plan. 🙂

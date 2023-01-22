@@ -8,6 +8,6 @@ class SubscriptionMailer < ApplicationMailer
   def invoice
     @subscription = params[:subscription]
 
-    mail to: @subscription.customer.email
+    mail to: @subscription.customer.email, subject: 'Factura de Suscripción'
   end
 end

@@ -14,7 +14,8 @@ class CustomerDatatable < AjaxDatatablesRails::ActiveRecord
     @view_columns ||= {
       id: { source: "Customer.id" },
       name: { source: "Customer.name" },
-      dni: { source: "Customer.dni" },
+      phone: { source: "Customer.phone" },
+      birth_date: { source: "Customer.birth_date" },
       created_at: { source: "Customer.created_at" }
     }
   end
@@ -26,7 +27,7 @@ class CustomerDatatable < AjaxDatatablesRails::ActiveRecord
         id: record.id,
         status: record.subscription_status,
         name: record.name,
-        dni: record.dni,
+        phone: record.phone,
         created_at: record.created_at.strftime('%d/%m/%Y'),
         actions: content_tag(:div) do
           actions = link_to(icon("fas", "clipboard-user"), customer_attendances_path(record.id), class: "btn btn-secondary btn-sm mr-1") +

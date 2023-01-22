@@ -1,107 +1,190 @@
-<div bgcolor="#f6f6f6" style="color: #333; height: 100%; width: 100%;" height="100%" width="100%">
-  <table bgcolor="#f6f6f6" cellspacing="0" style="border-collapse: collapse; padding: 40px; width: 100%;" width="100%">
-    <tbody>
-    <tr>
-      <td width="5px" style="padding: 0;"></td>
-      <td style="clear: both; display: block; margin: 0 auto; max-width: 600px; padding: 10px 0;">
-        <table width="100%" cellspacing="0" style="border-collapse: collapse;">
-          <tbody>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+
+  <style>
+      td {
+          font-size: 24px;
+      }
+
+      .invoice-box {
+          max-width: 800px;
+          margin: auto;
+          padding: 30px;
+          border: 1px solid #eee;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+          font-size: 16px;
+          line-height: 24px;
+          font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+          color: #555;
+      }
+
+      .invoice-box table {
+          width: 100%;
+          line-height: inherit;
+          text-align: left;
+      }
+
+      .invoice-box table td {
+          padding: 5px;
+          vertical-align: top;
+      }
+
+      .invoice-box table tr td:nth-child(2) {
+          text-align: right;
+      }
+
+      .invoice-box table tr.top table td {
+          padding-bottom: 20px;
+      }
+
+      .invoice-box table tr.top table td.title {
+          font-size: 45px;
+          line-height: 45px;
+          color: #333;
+      }
+
+      .invoice-box table tr.information table td {
+          padding-bottom: 40px;
+      }
+
+      .invoice-box table tr.heading td {
+          background: #eee;
+          border-bottom: 1px solid #ddd;
+          font-weight: bold;
+      }
+
+      .invoice-box table tr.details td {
+          padding-bottom: 20px;
+      }
+
+      .invoice-box table tr.item td {
+          border-bottom: 1px solid #eee;
+      }
+
+      .invoice-box table tr.item.last td {
+          border-bottom: none;
+      }
+
+      .invoice-box table tr.total td:nth-child(2) {
+          border-top: 2px solid #eee;
+          font-weight: bold;
+      }
+
+      @media only screen and (max-width: 600px) {
+          .invoice-box table tr.top table td {
+              width: 100%;
+              display: block;
+              text-align: center;
+          }
+
+          .invoice-box table tr.information table td {
+              width: 100%;
+              display: block;
+              text-align: center;
+          }
+      }
+
+      /** RTL **/
+      .invoice-box.rtl {
+          direction: rtl;
+          font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+      }
+
+      .invoice-box.rtl table {
+          text-align: right;
+      }
+
+      .invoice-box.rtl table tr td:nth-child(2) {
+          text-align: left;
+      }
+  </style>
+</head>
+
+<body>
+<div class="invoice-box">
+  <table cellpadding="0" cellspacing="0">
+    <tr class="top">
+      <td colspan="2">
+        <table>
           <tr>
-            <td style="padding: 0;">
-              <%= image_tag "gym_invoice.jpg", style: "height: 50px; max-width: 100%; width: 157px;" %>
+            <td class="title">
+<!--              <img src="#" style="width: 100%; max-width: 300px" />-->
             </td>
-            <td style="color: #999; font-size: 16px; font-weight: bold; padding: 0; text-align: right;" align="right">
-              GYM FUERZA Y SALUD<br/>
-              Factura #<%= @subscription.id %><br/>
-              <%= DateTime.current.to_date.strftime('%d/%m/%Y') %>
+
+            <td>
+              Factura #: <%= @subscription.id %><br />
+              Fecha: <%= @subscription.created_at.strftime('%d/%m/%Y') %><br />
             </td>
           </tr>
-          </tbody>
         </table>
       </td>
-      <td width="5px" style="padding: 0;"></td>
     </tr>
 
-    <tr>
-      <td width="5px" style="padding: 0;"></td>
-      <td bgcolor="#FFFFFF" style="border: 1px solid #000; clear: both; display: block; margin: 0 auto; max-width: 600px; padding: 0;">
-        <table width="100%" style="background: #f9f9f9; border-bottom: 1px solid #eee; border-collapse: collapse; color: #999;">
-          <tbody>
+    <tr class="information">
+      <td colspan="2">
+        <table>
           <tr>
-            <td width="50%" style="padding: 20px;">
-              <strong style="color: #333; font-size: 24px;">FACTURA #<%= @subscription.id %></strong></td>
-            <td align="right" width="50%" style="padding: 20px;"><%= @subscription.customer.name %></td>
-          </tr>
-          </tbody>
-        </table>
-      </td>
-      <td style="padding: 0;"></td>
-      <td width="5px" style="padding: 0;"></td>
-    </tr>
-    <tr>
-      <td width="5px" style="padding: 0;"></td>
-      <td style="border: 1px solid #000; border-top: 0; clear: both; display: block; margin: 0 auto; max-width: 600px; padding: 0;">
-        <table cellspacing="0" style="border-collapse: collapse; border-left: 1px solid #000; margin: 0 auto; max-width: 600px;">
-          <tbody>
-          <tr>
-            <td valign="top" style="padding: 20px;">
-              <h3
-                style="
-                border-bottom: 1px solid #000;
-                  color: #000;
-                  font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-                  font-size: 18px;
-                  font-weight: bold;
-                  line-height: 1.2;
-                  margin: 0;
-                  margin-bottom: 15px;
-                  padding-bottom: 5px;
-                "
-              >
-                Resumen
-              </h3>
-              <table cellspacing="0" style="border-collapse: collapse; margin-bottom: 40px;">
-                <tbody>
-                <tr>
-                  <td style="padding: 5px 0;">Plan</td>
-                  <td align="right" style="padding: 5px 0;"><%= @subscription.plan.name %></td>
-                </tr>
-                <tr>
-                  <td style="padding: 5px 0;">Precio</td>
-                  <td align="right" style="padding: 5px 0;"><%= @subscription.plan.price %></td>
-                </tr>
-                <tr>
-                  <td style="padding: 5px 0;">Fecha de inicio</td>
-                  <td align="right" style="padding: 5px 0;"><%= @subscription.start.strftime('%d/%m/%Y') %></td>
-                </tr>
-                <tr>
-                <tr>
-                  <td style="padding: 5px 0;">Fecha de fin</td>
-                  <td align="right" style="padding: 5px 0;"><%= @subscription.end.strftime('%d/%m/%Y') %></td>
-                </tr>
-                <tr>
-                <tr>
-                  <td style="border-bottom: 2px solid #000; border-top: 2px solid #000; font-weight: bold; padding: 5px 0;">Total
-                  </td>
-                  <td align="right" style="border-bottom: 2px solid #000; border-top: 2px solid #000; font-weight: bold; padding: 5px 0;">$<%= @subscription.plan.price %></td>
-                </tr>
-                <tr>
-                <tr>
-                  <td style="padding: 5px 0;">GYM FUERZA Y SALUD - 39 Años de experiencia. <br>
-                    <i>¡Gracias por su compra!</i></td>
-                  <td align="right" style="padding: 5px 0;"></td>
-                </tr>
-                <tr>
-                </tbody>
-              </table>
+            <td>
+              GYM FUERZA Y SALUD<br />
+              Calle 30 #23-34 Girón<br />
+              6465189
+            </td>
+
+            <td>
+              <%= @subscription.customer.name %><br />
+              <%= @subscription.customer.created_at.strftime('%d/%m/%Y') %><br />
+              <%= @subscription.customer.email %>
             </td>
           </tr>
-          </tbody>
         </table>
       </td>
-      <td width="5px" style="padding: 0;"></td>
     </tr>
-    </tbody>
+
+    <tr class="heading">
+      <td>Suscripción</td>
+
+      <td>Detalle</td>
+    </tr>
+
+    <tr class="details">
+      <td>Plan</td>
+
+      <td><%= @subscription.plan.name %></td>
+    </tr>
+
+    <tr class="details">
+      <td>Fecha de inicio</td>
+
+      <td><%= @subscription.start.strftime('%d/%m/%Y') %></td>
+    </tr>
+
+    <tr class="details">
+      <td>Fecha de fin</td>
+
+      <td><%= @subscription.end.strftime('%d/%m/%Y') %></td>
+    </tr>
+
+    <tr class="heading">
+      <td>Plan</td>
+
+      <td>Precio</td>
+    </tr>
+
+    <tr class="item last">
+      <td><%= @subscription.plan.name %></td>
+
+      <td>$<%= @subscription.plan.price %></td>
+    </tr>
+
+    <tr class="total">
+      <td></td>
+
+      <td>Total: $<%= @subscription.plan.price %></td>
+    </tr>
   </table>
 </div>
-
+</body>
+</html>

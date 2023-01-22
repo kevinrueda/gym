@@ -14,7 +14,6 @@ class PlanDatatable < AjaxDatatablesRails::ActiveRecord
     @view_columns ||= {
       name: { source: "Plan.name" },
       description: { source: "Plan.price" },
-      created_at: { source: "Plan.number_days" }
     }
   end
 
@@ -23,7 +22,6 @@ class PlanDatatable < AjaxDatatablesRails::ActiveRecord
       {
         name: record.name,
         price: record.price,
-        number_days: record.number_days,
         actions: content_tag(:div) do
             link_to(icon("fas", "edit"), edit_plan_path(record), class: "btn btn-warning btn-sm mr-1")
         end,

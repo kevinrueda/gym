@@ -35059,7 +35059,6 @@
       $("#plans-datatable").dataTable({
         "retrieve": true,
         "processing": true,
-        "serverSide": true,
         "ajax": {
           "url": $("#plans-datatable").data("source")
         },
@@ -35072,7 +35071,6 @@
           },
           { "data": "name" },
           { "data": "price" },
-          { "data": "number_days" },
           { "data": "actions", "orderable": false, "width": "10%" }
         ],
         "order": [[1, "asc"]]
@@ -35109,7 +35107,7 @@
             }
           },
           { "data": "name" },
-          { "data": "dni" },
+          { "data": "phone" },
           { "data": "created_at" },
           { "data": "actions", "orderable": false, "width": "10%" }
         ],

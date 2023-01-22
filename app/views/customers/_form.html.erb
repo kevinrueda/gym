@@ -5,12 +5,12 @@
       <%= form.text_field :name, class: "form-control", :required => true %>
     </div>
     <div class="form-group">
-      <%= form.label :dni, "Documento de identificación" %>
+      <%= form.label :phone, "Teléfono" %>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+          <span class="input-group-text"><i class="fas fa-phone"></i></span>
         </div>
-        <%= form.text_field :dni, class: "form-control", :required => true %>
+        <%= form.text_field :phone, class: "form-control", :required => true %>
       </div>
     </div>
     <div class="form-group">
@@ -20,6 +20,15 @@
           <span class="input-group-text"><i class="fas fa-at"></i></span>
         </div>
         <%= form.email_field :email, class: "form-control", :required => true %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= form.label :dni, "Documento de identificación" %>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+        </div>
+        <%= form.text_field :dni, class: "form-control" %>
       </div>
     </div>
     <div class="form-group">
@@ -37,16 +46,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text"><i class="fas fa-birthday-cake"></i></span>
         </div>
-        <%= form.date_field :birth_date, class: "form-control" %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= form.label :phone, "Teléfono" %>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text"><i class="fas fa-phone"></i></span>
-        </div>
-        <%= form.text_field :phone, class: "form-control" %>
+        <%= form.date_field :birth_date, class: "form-control", :required => true %>
       </div>
     </div>
     <div class="form-group">
@@ -87,6 +87,15 @@
     <div class="form-group">
       <%= form.label :others, "Otros" %>
       <%= form.text_area :others, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :created_at, "Fecha de Inscripción" %>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
+        </div>
+        <%= form.date_field :created_at, class: "form-control" %>
+      </div>
     </div>
   </div>
 

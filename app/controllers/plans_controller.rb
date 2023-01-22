@@ -50,6 +50,6 @@ class PlansController < ApplicationController
   end
 
   def plan_params
-    params.require(:plan).permit(:name, :price, :number_days)
+    params.require(:plan).permit(:name, :price)
   end
 end

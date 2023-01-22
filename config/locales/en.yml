@@ -31,7 +31,3 @@
 
 en:
   hello: "Hello world"
-
-  subscription_mailer:
-    invoice:
-      subject: "Factura de Suscripción al GYM Fuerza y Salud"

@@ -26,14 +26,12 @@ class SubscriptionsController < ApplicationController
     @customer = Customer.find(params[:subscription][:customer_id])
     if @customer.subscription_status
       start_sub = @customer.subscriptions.last.end + 1.days
-      end_sub = @customer.subscriptions.last.end + Plan.find(params[:subscription][:plan_id]).number_days.to_i.days
     else
       start_sub = DateTime.current.to_date
-      end_sub = DateTime.current.to_date + Plan.find(params[:subscription][:plan_id]).number_days.to_i.days
     end
     @subscription = Subscription.create(subscription_params)
     @subscription.start = start_sub
-    @subscription.end = end_sub
+    @subscription.end = params[:subscription][:end]
     if @subscription.save
       SubscriptionMailer.with(subscription: @subscription).invoice.deliver_later
       redirect_to subscriptions_path, notice: 'La Suscripción se ha creado correctamente'
@@ -73,6 +71,6 @@ class SubscriptionsController < ApplicationController
   end
 
   def subscription_params
-    params.require(:subscription).permit(:customer_id, :plan_id)
+    params.require(:subscription).permit(:customer_id, :plan_id, :end)
   end
 end

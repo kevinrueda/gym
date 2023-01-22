@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="c97ef592-7731-4087-a026-5dd580894de2" name="gym" url="http://31.220.109.25/">
+        <fileTransfer accessType="SFTP" host="31.220.109.25" port="22" sshConfigId="d35e2067-102d-425e-a4a4-6cb6816f9bf6" sshConfig="root@31.220.109.25:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

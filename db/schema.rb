@@ -14,7 +14,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_30_011726) do
   create_table "attendances", force: :cascade do |t|
     t.string "title", default: "✓"
     t.date "start"
-    t.date "end", default: "2022-12-28"
+    t.date "end", default: "2023-01-05"
     t.integer "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -41,7 +41,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_30_011726) do
   create_table "plans", force: :cascade do |t|
     t.string "name"
     t.string "price"
-    t.string "number_days"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -49,7 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_30_011726) do
   create_table "subscriptions", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "plan_id", null: false
-    t.date "start", default: "2022-12-28"
+    t.date "start", default: "2023-01-05"
     t.date "end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
